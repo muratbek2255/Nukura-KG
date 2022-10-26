@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from datetime import date
 
 
-class BillingReq(BaseModel):
+class BillingSchema(BaseModel):
     id: int
     payable: float
     approved_by: str

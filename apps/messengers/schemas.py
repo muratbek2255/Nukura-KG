@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 
-class MessengerReq(BaseModel):
+class MessengerSchema(BaseModel):
     id: int
     firstname: str
     lastname: str
