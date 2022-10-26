@@ -9,7 +9,7 @@ from db.session import MainMata
 class Messenger(BaseModel):
     class Meta(MainMata):
         tablename = "messengers"
-    firstname: str = ormar.String(max_length=56, unique=False, index=False, nullable=False)
+    firstname: str = ormar.String(max_length=55, unique=False, index=False, nullable=False)
     lastname: str = ormar.String(max_length=127, unique=False, index=False, nullable=False)
     salary: float = ormar.Float(unique=False, index=False, nullable=False)
     date_employed: datetime = ormar.DateTime(unique=False, index=False, nullable=False)
