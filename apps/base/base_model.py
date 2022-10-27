@@ -1,4 +1,6 @@
 import ormar
+
+from apps.base.base_schemas import Roles
 from db.session import MainMata
 
 
@@ -26,3 +28,4 @@ class Login(ormar.Model):
     is_active: bool = ormar.Boolean(default=False)
     created_at = ormar.DateTime()
     updated_at = ormar.DateTime()
+    role = ormar.String(max_length=100, choices=Roles, default="user")

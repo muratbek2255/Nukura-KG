@@ -4,6 +4,7 @@ from cryptography.fernet import Fernet
 
 
 async def process_billing(query_list):
+    """Billing service"""
     billing_list = []
 
     async def extract_billing(qlist, q: Queue):

@@ -4,14 +4,10 @@ from apps.admins.models import Admin
 
 
 class AdminRepository:
-
-    async def insert_admin(self, details: Dict[str, Any]) -> bool:
-        try:
-            admin = await Admin.objects.create(**details)
-        except Exception as e:
-            print(e)
-            return False
-        return True
+    """CRUD by pattern REPOSITORY"""
+    async def insert_admin(self, details: Dict[str, Any]):
+        admin = await Admin.objects.create(**details)
+        return admin
 
     async def update_admin(self, id: int, details: Dict[str, Any]) -> bool:
         try:
