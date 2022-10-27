@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 class AdminSchema(BaseModel):
+    """Pydantic model for Admin"""
     id: int
     username: str
     password: str
@@ -12,6 +13,7 @@ class AdminSchema(BaseModel):
     updated_at: datetime
     is_staff: bool
     is_superuser: bool
+    role: str
 
     class Config:
         orm_mode = True
