@@ -12,7 +12,7 @@ class AdminRepository:
     async def update_admin(self, id: int, details: Dict[str, Any]) -> bool:
         try:
             admin = await Admin.objects.get(pk=id)
-            await admin.update(**details).apply()
+            await admin.update(**details)
         except Exception as e:
             return False
         return True
