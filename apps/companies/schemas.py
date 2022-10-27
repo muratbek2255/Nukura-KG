@@ -1,4 +1,4 @@
-from apps.base.base_schemas import LoginSchema
+from apps.login.base_schemas import LoginSchema
 
 
 class CompanySchema(LoginSchema):
@@ -7,3 +7,6 @@ class CompanySchema(LoginSchema):
     address: str
     email: str
     phone_number: str
+
+    class Config:
+        orm_mode = True

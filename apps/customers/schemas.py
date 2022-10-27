@@ -1,4 +1,4 @@
-from apps.base.base_schemas import LoginSchema
+from apps.login.base_schemas import LoginSchema
 
 
 class CustomerSchema(LoginSchema):
