@@ -37,7 +37,7 @@ async def update_admin_login(id: int, req: AdminSchema):
 
 
 @admin_router.delete("/admin/login/list", dependencies=[Depends(base_service.check_admin)])
-async def update_admin_login(id: int):
+async def delete_admin_login(id: int):
     """For update admins"""
     repo = AdminRepository()
     result = await repo.delete_admin(id)
