@@ -1,11 +1,7 @@
-from pydantic import BaseModel
-from datetime import datetime
+from enum import Enum
 
 
-class LoginSchema(BaseModel):
-    id: int
-    username: str
-    password: str
-    is_active: bool
-    created_at: datetime
-    updated_at: datetime
+class Roles(Enum):
+    user = "user"
+    admin = "admin"
+    company = "company"

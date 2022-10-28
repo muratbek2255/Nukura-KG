@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
+from apps import routes
 from core import settings
 from db.session import (
     metadata, engine, database
@@ -39,3 +40,5 @@ async def shutdown() -> None:
     database_ = app.state.database
     if database_.is_connected:
         await database_.disconnect()
+
+app.include_router(routes.api_router, prefix=settings.API_V1_STR)
