@@ -3,24 +3,24 @@ from typing import Dict, Any
 from apps.customers.models import Customer
 
 
-class AdminRepository:
+class CustomerRepository:
     """CRUD by pattern REPOSITORY"""
     async def insert_customer(self, details: Dict[str, Any]):
-        admin = await Customer.objects.create(**details)
-        return admin
+        customer = await Customer.objects.create(**details)
+        return customer
 
     async def update_customer(self, id: int, details: Dict[str, Any]) -> bool:
         try:
-            admin = await Customer.objects.get(pk=id)
-            await admin.update(**details)
+            customer = await Customer.objects.get(pk=id)
+            await customer.update(**details)
         except Exception as e:
             return False
         return True
 
     async def delete_customer(self, id: int) -> bool:
         try:
-            admin = await Customer.objects.get(pk=id)
-            await admin.delete()
+            customer = await Customer.objects.get(pk=id)
+            await customer.delete()
         except Exception as e:
             return False
         return True

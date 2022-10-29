@@ -6,21 +6,21 @@ from apps.companies.models import Company
 class CompanyRepository:
     """CRUD by pattern REPOSITORY"""
     async def insert_company(self, details: Dict[str, Any]):
-        admin = await Company.objects.create(**details)
-        return admin
+        company = await Company.objects.create(**details)
+        return company
 
     async def update_company(self, id: int, details: Dict[str, Any]) -> bool:
         try:
-            admin = await Company.objects.get(pk=id)
-            await admin.update(**details)
+            company = await Company.objects.get(pk=id)
+            await company.update(**details)
         except Exception as e:
             return False
         return True
 
     async def delete_company(self, id: int) -> bool:
         try:
-            admin = await Company.objects.get(pk=id)
-            await admin.delete()
+            company = await Company.objects.get(pk=id)
+            await company.delete()
         except Exception as e:
             return False
         return True
