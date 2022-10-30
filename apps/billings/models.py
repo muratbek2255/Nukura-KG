@@ -4,12 +4,16 @@ from datetime import datetime
 from apps.admins.models import Admin
 from apps.base.base_model import BaseModel
 from apps.companies.models import Company
-from db.session import MainMata
+from db.session import metadata, database
 
 
 class Billing(BaseModel):
-    class Meta(MainMata):
-        tablename = "billings"
+
+    class Meta(ormar.ModelMeta):
+        tablename = 'admins'
+        metadata = metadata
+        database = database
+
     payable: float = ormar.Float(unique=False, index=False, nullable=False)
     approved_by: str = ormar.String(max_length=127, unique=False, index=False, nullable=False)
     date_approved: datetime = ormar.DateTime(unique=False, index=False, nullable=False)

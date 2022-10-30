@@ -3,12 +3,16 @@ from datetime import datetime
 
 from apps.base.base_model import BaseModel
 from apps.customers.models import Customer
-from db.session import MainMata
+from db.session import metadata, database
 
 
 class Subscription(BaseModel):
-    class Meta(MainMata):
-        tablename = "subscriptions"
+
+    class Meta(ormar.ModelMeta):
+        tablename = 'subscriptions'
+        metadata = metadata
+        database = database
+
     customer_id: int = ormar.ForeignKey(to=Customer, unique=False, index=False, nullable=False)
     branch: str = ormar.String(max_length=127, unique=False, index=False, nullable=False)
     price: str = ormar.Float(unique=False, index=False, nullable=False)

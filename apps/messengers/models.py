@@ -3,12 +3,16 @@ from datetime import datetime
 
 from apps.base.base_model import BaseModel
 from apps.companies.models import Company
-from db.session import MainMata
+from db.session import metadata, database
 
 
 class Messenger(BaseModel):
-    class Meta(MainMata):
-        tablename = "messengers"
+
+    class Meta(ormar.ModelMeta):
+        tablename = 'messengers'
+        metadata = metadata
+        database = database
+
     firstname: str = ormar.String(max_length=55, unique=False, index=False, nullable=False)
     lastname: str = ormar.String(max_length=127, unique=False, index=False, nullable=False)
     salary: float = ormar.Float(unique=False, index=False, nullable=False)

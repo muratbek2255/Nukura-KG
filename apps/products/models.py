@@ -5,12 +5,17 @@ from apps.base.base_model import BaseModel
 from apps.categories.models import Category
 from apps.companies.models import Company
 from apps.messengers.models import Messenger
-from db.session import MainMata
+
+from db.session import metadata, database
 
 
 class Product(BaseModel):
-    class Meta(MainMata):
-        tablename = "products"
+
+    class Meta(ormar.ModelMeta):
+        tablename = 'products'
+        metadata = metadata
+        database = database
+
     title: str = ormar.String(max_length=127, unique=False, index=False, nullable=False)
     image: str = ormar.String(max_length=500, unique=False, index=False, nullable=False)
     price: float = ormar.Decimal(maximum=7, decimal_places=2, unique=False, index=False, nullable=False)
