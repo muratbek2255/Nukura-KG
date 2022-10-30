@@ -1,6 +1,5 @@
 import asyncio
 from asyncio import Queue
-from cryptography.fernet import Fernet
 
 
 async def process_billing(query_list):
@@ -39,36 +38,3 @@ async def process_billing(query_list):
     await q.join()
     build_sheet.cancel()
     return billing_list
-
-
-async def extract_profile(admin_details):
-    profile = {}
-    login = admin_details.parent
-    profile['username'] = login.username
-    profile['password'] = login.password
-    profile['is_active'] = login.is_active
-    profile['is_staff'] = login.is_staff
-    profile['is_superuser'] = login.is_superuser
-    await asyncio.sleep(1)
-    return profile
-
-
-async def extract_condensed(profiles):
-    profile_info = " ".join([profiles['username'], profiles['password'], profiles['is_active'],
-                             profiles['is_staff'], profiles['is_superuser']])
-    await asyncio.sleep(1)
-    return profile_info
-
-
-async def decrypt_profile(profile_info):
-    key = Fernet.generate_key()
-    fernet = Fernet(key)
-    encoded_profile = fernet.encrypt(profile_info.encode())
-    return encoded_profile
-
-
-async def extract_enc_admin_profile(admin_rec):
-    p = await extract_profile(admin_rec)
-    pinfo = await extract_condensed(p)
-    encp = await decrypt_profile(pinfo)
-    return encp
