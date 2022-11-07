@@ -1,5 +1,8 @@
 import os
 
+from celery import Celery
+from celery.utils.log import get_task_logger
+
 PROJECT_NAME = "App"
 SERVER_HOST = 'http://127.0.0.1:8080'
 

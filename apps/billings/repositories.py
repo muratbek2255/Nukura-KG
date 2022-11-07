@@ -37,15 +37,15 @@ class BillingRepository:
 
 
 class BillingAdminRepository:
-
+    # isn't working
     async def join_billing_admin(self, id: int):
         query = Admin.objects.filter(pk=id).prefetch_related('billings')
-        result = await query.load(Billing).all()
+        result = await query.load()
         return result
 
 
 class BillingVendorRepository:
-
+    # isn't working
     async def join_billing_vendor(self):
         query = Company.objects.filter(pk=id).prefetch_related('billings')
         result = await query.load(Billing).all()
