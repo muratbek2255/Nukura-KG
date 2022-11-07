@@ -1,15 +1,18 @@
 from pydantic import BaseModel
-from datetime import date
+from datetime import datetime
 
 
 class BillingSchema(BaseModel):
     id: int
     payable: float
     approved_by: str
-    date_approved: date
-    date_billed: date
+    date_approved: datetime
+    date_billed: datetime
     received_by: str
-    date_received: date
+    date_received: datetime
     total_issues: int
-    vendor_id: int
-    admin_id: int
+    companies_id: int
+    admins_id: int
+
+    class Config:
+        orm_mode = True

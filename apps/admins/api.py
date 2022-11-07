@@ -1,9 +1,12 @@
 from fastapi import APIRouter, Depends
+from fastapi.encoders import jsonable_encoder
 from fastapi.security import HTTPBasic
 
 from apps.admins.repositories import AdminRepository
 from apps.admins.schemas import AdminSchema
+from apps.admins.services import process_billing
 from apps.base import base_service
+from apps.billings.repositories import BillingAdminRepository
 
 http_basic = HTTPBasic()
 
@@ -42,3 +45,11 @@ async def delete_admin_login(id: int):
     repo = AdminRepository()
     result = await repo.delete_admin(id)
     return result
+
+
+@admin_router.get("/admin/billing/all")
+async def list_admin_with_billing(id: int):
+    repo = BillingAdminRepository()
+    result = await repo.join_billing_admin(id)
+    data = await process_billing(result)
+    return jsonable_encoder(data)
