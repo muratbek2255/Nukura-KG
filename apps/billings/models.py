@@ -10,7 +10,7 @@ from db.session import metadata, database
 class Billing(BaseModel):
 
     class Meta(ormar.ModelMeta):
-        tablename = 'admins'
+        tablename = 'billings'
         metadata = metadata
         database = database
 

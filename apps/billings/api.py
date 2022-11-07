@@ -7,10 +7,10 @@ from apps.billings.repositories import BillingRepository, BillingVendorRepositor
 from apps.billings.schemas import BillingSchema
 from apps.billings.services import generate_billing_sheet, create_total_payables_year, create_total_payables_year_celery
 
-router = APIRouter()
+billing_router = APIRouter()
 
 
-@router.post("/billing/add")
+@billing_router.post("/billing/add")
 async def add_billing(req: BillingSchema):
     billing_dict = req.dict(exclude_unset=True)
     repo = BillingRepository()
@@ -18,7 +18,7 @@ async def add_billing(req: BillingSchema):
     return result
 
 
-@router.post("/billing/save/csv")
+@billing_router.post("/billing/save/csv")
 async def save_vendor_billing(billing_date: date, tasks: BackgroundTasks):
     repo = BillingVendorRepository()
     result = await repo.join_billing_vendor()
@@ -27,7 +27,7 @@ async def save_vendor_billing(billing_date: date, tasks: BackgroundTasks):
     return {"message": "done"}
 
 
-@router.post("/billing/total/payable")
+@billing_router.post("/billing/total/payable")
 async def compute_payable_yearly(billing_date: date):
     repo = BillingVendorRepository()
     result = await repo.join_billing_vendor()
