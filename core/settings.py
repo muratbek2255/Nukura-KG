@@ -2,12 +2,13 @@ import os
 
 from celery import Celery
 from celery.utils.log import get_task_logger
+from local_settings import SECRET_KEY
 
 PROJECT_NAME = "App"
 SERVER_HOST = 'http://127.0.0.1:8080'
 
 # Secret key
-SECRET_KEY = b"awubsyb872378t^*TG8y68&*&&*8y8yg9POB)*896ft7CR^56dfYUv"
+SECRET_KEY = SECRET_KEY
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
